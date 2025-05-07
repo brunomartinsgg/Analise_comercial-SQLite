@@ -40,6 +40,7 @@ def consulta_vendas_por_representante(conn):
         ORDER BY total_vendas DESC
         """
         df = pd.read_sql(query, conn)
+        df['total_vendas'] = df['total_vendas'].apply(lambda x: f"R${x:,.2f}".replace(',', 'v').replace('.', ',').replace('v', '.'))
         print("\n📊 Vendas por Representante:")
         print(df.to_string(index=False))
     except Exception as e:
@@ -55,7 +56,8 @@ def consulta_vendas_por_produto(conn):
         ORDER BY faturamento DESC
         """
         df = pd.read_sql(query, conn)
-        print("\n📦 Faturamento por Produto:")
+        df['faturamento'] = df['faturamento'].apply(lambda x: f"R${x:,.2f}".replace(',', 'v').replace('.', ',').replace('v', '.'))
+        print("\n📦 Faturamento por Produto: ")
         print(df.to_string(index=False))
     except Exception as e:
         print(f"❌ Erro na consulta: {e}")
@@ -71,6 +73,7 @@ def clientes_que_mais_compraram(conn):
         ORDER BY total_gasto DESC
         """
         df = pd.read_sql(query, conn)
+        df['total_gasto'] = df['total_gasto'].apply(lambda x: f"R${x:,.2f}".replace(',', 'v').replace('.', ',').replace('v', '.'))
         print("\n👤 Clientes que mais compraram:")
         print(df.to_string(index=False))
     except Exception as e:
@@ -116,7 +119,7 @@ def faturamento_total(conn):
         """
         df = pd.read_sql(query, conn)
         valor = df.iloc[0, 0]
-        print(f"\n💰 Faturamento total: R${valor:.2f}")
+        print(f"\n💰 Faturamento total: R${valor:,.2f}".replace(',', 'v').replace('.', ',').replace('v', '.'))
     except Exception as e:
         print(f"❌ Erro na consulta: {e}")
 
