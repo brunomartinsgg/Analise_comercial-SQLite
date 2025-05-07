@@ -3,13 +3,15 @@ import pandas as pd
 from tkinter import simpledialog, messagebox, Tk
 import os
 
-# Definindo o caminho do banco de dados
+
 DB_PATH = os.path.join(os.path.dirname(__file__), 'Projeto_Marianne_SQLITE.db')
 
 def exibir_dataframe(df, titulo):
     if df.empty:
         messagebox.showinfo(titulo, "Nenhum dado encontrado.")
     else:
+        # Formatação para valores monetários em Real
+        df = df.applymap(lambda x: f"R${x:,.2f}" if isinstance(x, (int, float)) else x)
         resultado = df.to_string(index=False)
         messagebox.showinfo(titulo, resultado)
 
@@ -31,12 +33,11 @@ def relatorio_vendas_representantes():
 def relatorio_faturamento_produto():
     con = sqlite3.connect(DB_PATH)
     query = '''
-    SELECT c.nome AS cliente, SUM(ip.quantidade * ip.preco_unitario) AS total_gasto
-        FROM Cliente c
-        JOIN Pedido p ON c.id_cliente = p.id_cliente
-        JOIN Item_Pedido ip ON p.id_pedido = ip.id_pedido
-        GROUP BY c.nome
-        ORDER BY total_gasto DESC;
+    SELECT pr.nome AS produto, SUM(ip.quantidade * ip.preco_unitario) AS faturamento
+        FROM Produto pr
+        JOIN Item_Pedido ip ON pr.id_produto = ip.id_produto
+        GROUP BY pr.nome
+        ORDER BY faturamento DESC;
     '''
     df = pd.read_sql_query(query, con)
     con.close()
