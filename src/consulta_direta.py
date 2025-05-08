@@ -5,7 +5,7 @@ import os
 def conectar_banco():
     try:
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        caminho_db = os.path.join(base_dir, 'Projeto_Marianne_SQLITE.db')
+        caminho_db = os.path.join(base_dir, 'database.db')
         conn = sqlite3.connect(caminho_db)
         print("✅ Conexão estabelecida com sucesso!")
         return conn
