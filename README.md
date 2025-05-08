@@ -24,7 +24,7 @@ Sistema em Python que permite consultar, analisar e visualizar informações com
 │   └── utils/                   # Funções utilitárias
 ├── assets/                      # Arquivos estáticos (imagens, etc.)
 ├── dist/                        # Build gerado (PyInstaller)
-├── app.py                       # Ponto de entrada da aplicação
+├── Main.py                      # Ponto de entrada da aplicação
 ├── Projeto_Marianne_SQLITE.db   # Banco de dados de exemplo
 ├── requirements.txt             # Dependências do projeto
 ├── .gitignore                   # Arquivos e pastas ignorados pelo Git
