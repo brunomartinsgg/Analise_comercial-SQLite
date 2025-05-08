@@ -2,13 +2,12 @@ import sqlite3
 import os
 import pandas as pd
 from pathlib import Path
-from PIL import Image
+from PIL import Imagepip
 import locale
 import tkinter as tk
 from tkinter import simpledialog
 import sys
 
-# Configuração de caminhos e formato brasileiro
 BASE_DIR = Path(__file__).parent
 ASSETS_DIR = BASE_DIR / "assets"
 IMAGES_DIR = ASSETS_DIR / "images"
@@ -40,14 +39,12 @@ def menu():
 def obter_entrada():
     """Exibe uma janela para capturar a entrada do usuário"""
     root = tk.Tk()
-    root.withdraw()  # Esconde a janela principal
-    # Abre um diálogo para obter a entrada do usuário
+    root.withdraw()
     usuario_input = simpledialog.askstring("Entrada", "Escolha uma opção:")
     return usuario_input
 
 def relatorio_vendas_representantes():
     """Gera relatório de vendas por representante"""
-    # Conexão e consulta SQL
     print("Relatório de vendas por representante gerado...")
     pass
 

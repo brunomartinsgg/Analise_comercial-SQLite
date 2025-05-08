@@ -5,7 +5,6 @@ from pathlib import Path
 import sys
 import os
 
-# Configura locale para formato brasileiro
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
 def resource_path(relative_path):
@@ -23,7 +22,7 @@ def formatar_moeda(valor):
 def gerar_relatorio():
     """Gera relatório com formatação profissional"""
     try:
-        db_path = resource_path("Projeto_Marianne_SQLITE.db")
+        db_path = resource_path("database.db")
         conn = sqlite3.connect(db_path)
         
         query = """
@@ -37,7 +36,6 @@ def gerar_relatorio():
         
         df = pd.read_sql(query, conn)
         
-        # Formatação profissional
         df['total_vendas'] = df['total_vendas'].apply(formatar_moeda)
         
         print("\n" + "="*50)

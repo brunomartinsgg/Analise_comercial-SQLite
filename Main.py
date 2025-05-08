@@ -4,7 +4,7 @@ from tkinter import simpledialog, messagebox, Tk
 import os
 
 
-DB_PATH = os.path.join(os.path.dirname(__file__), 'Projeto_Marianne_SQLITE.db')
+DB_PATH = os.path.join(os.path.dirname(__file__), 'database.db')
 
 def exibir_dataframe(df, titulo):
     if df.empty:

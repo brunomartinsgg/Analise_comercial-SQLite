@@ -1,2 +1,2 @@
 @echo off
-start cmd /k "Main.exe"
+start cmd /k "main.exe"
