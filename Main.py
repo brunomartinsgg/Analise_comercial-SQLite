@@ -10,7 +10,6 @@ def exibir_dataframe(df, titulo):
     if df.empty:
         messagebox.showinfo(titulo, "Nenhum dado encontrado.")
     else:
-        # Formatação para valores monetários em Real
         df = df.applymap(lambda x: f"R${x:,.2f}" if isinstance(x, (int, float)) else x)
         resultado = df.to_string(index=False)
         messagebox.showinfo(titulo, resultado)
