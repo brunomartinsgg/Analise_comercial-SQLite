@@ -10,7 +10,6 @@ def exibir_dataframe(df, titulo):
     if df.empty:
         messagebox.showinfo(titulo, "Nenhum dado encontrado.")
     else:
-        # Formatação para valores monetários em Real
         df = df.applymap(lambda x: f"R${x:,.2f}" if isinstance(x, (int, float)) else x)
         resultado = df.to_string(index=False)
         messagebox.showinfo(titulo, resultado)
@@ -23,8 +22,7 @@ def relatorio_vendas_representantes():
         JOIN Pedido p ON r.id_representante = p.id_representante
         JOIN Item_Pedido ip ON p.id_pedido = ip.id_pedido
         GROUP BY r.nome
-        ORDER BY total_vendas DESC
-;
+        ORDER BY total_vendas DESC;
     '''
     df = pd.read_sql_query(query, con)
     con.close()
