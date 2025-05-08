@@ -23,8 +23,7 @@ def relatorio_vendas_representantes():
         JOIN Pedido p ON r.id_representante = p.id_representante
         JOIN Item_Pedido ip ON p.id_pedido = ip.id_pedido
         GROUP BY r.nome
-        ORDER BY total_vendas DESC
-;
+        ORDER BY total_vendas DESC;
     '''
     df = pd.read_sql_query(query, con)
     con.close()
